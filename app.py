@@ -44,8 +44,10 @@ client = Groq(api_key=API_KEY)
 def generate_success_score(idea_score, idea_description, stage, lives_impacted, funds_raised):
     prompt = (
         f"Predicted Idea Score: {idea_score}/10 for '{idea_description}' at '{stage}' stage. "
-        f"Key reasons: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
-        f"Summarize why this score was given in 2-3 short bullet points."
+        f"Key factors: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
+        f"Provide a concise explanation in **2 bullet points**: "
+        f"1️⃣ Why it received this high score. "
+        f"2️⃣ What can be improved for a better score."
     )
 
     try:
