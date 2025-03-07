@@ -31,7 +31,7 @@ def evaluate_new_idea(idea, stage, lives_impacted, funds_raised):
     funds_scaled = scaler.transform([[funds_raised]])[0, 0]
     input_data = np.hstack((idea_text_vector, [[stage_encoded, lives_scaled, funds_scaled]]))
 
-    best_model = xgb_model  # Change to rf_model or nn_model if required
+    best_model = rf_model  # Change to rf_model or nn_model if required
     predicted_score = best_model.predict(input_data)
 
     return round(predicted_score[0], 2)
@@ -43,11 +43,9 @@ if st.button("🔍 Predict Idea Success & Revenue"):
     if idea_description.strip():
         idea_score = evaluate_new_idea(idea_description, stage, lives_impacted, funds_raised)
 
-        st.success(f"✅ **Predicted Idea Score:** {idea_score}/10")
+        st.success(f"✅ **Predicted Idea Score:** {idea_score:.2f}/10")
         
     else:
         st.warning("⚠️ Please enter a valid idea description.")
 
-# Footer
-st.markdown("---")
-st.markdown("Developed by **Atharv Chougule** 🚀")
+
