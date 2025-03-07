@@ -1,4 +1,5 @@
-
+from groq import Groq
+import re
 import streamlit as st
 import joblib
 import numpy as np
@@ -36,16 +37,46 @@ def evaluate_new_idea(idea, stage, lives_impacted, funds_raised):
 
     return round(predicted_score[0], 2)
 
+# Load Groq API Key
+API_KEY = "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"
+client = Groq(api_key=API_KEY)
+
+# Function to explain the score
+def generate_success_score(idea_score, idea_description, stage, lives_impacted, funds_raised):
+    prompt = (
+        f"My Predicted Idea Score is {idea_score} for the idea: '{idea_description}' "
+        f"in the stage '{stage}', which has impacted {lives_impacted} lives and raised ${funds_raised}.\n"
+        f"Explain why my model might have given {idea_score} based on these factors."
+    )
+
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model="mixtral-8x7b-32768",
+            temperature=0.5,
+            max_tokens=100
+        )
+
+        explanation = chat_completion.choices[0].message.content.strip()
+        return explanation
+    except Exception as e:
+        return f"Error generating explanation: {e}"
 
 
 # Predict button
 if st.button("🔍 Predict Idea Success & Revenue"):
     if idea_description.strip():
         idea_score = evaluate_new_idea(idea_description, stage, lives_impacted, funds_raised)
-
         st.success(f"✅ **Predicted Idea Score:** {idea_score:.2f}/10")
         
+        # Generate explanation and display it
+        explanation = generate_success_score(idea_score, idea_description, stage, lives_impacted, funds_raised)
+        st.write(f"📖 **Explanation:** {explanation}")
+
     else:
         st.warning("⚠️ Please enter a valid idea description.")
+
+
+
 
 
