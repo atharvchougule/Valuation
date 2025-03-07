@@ -6,3 +6,4 @@ tensorflow
 joblib
 streamlit
 openpyxl
+Groq
