@@ -45,9 +45,10 @@ def generate_success_score(idea_score, idea_description, stage, lives_impacted, 
     prompt = (
         f"Predicted Idea Score: {idea_score}/10 for '{idea_description}' at '{stage}' stage. "
         f"Key factors: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
-        f"Provide a concise explanation in **2 bullet points**: "
+        f"Provide exactly **2 bullet points**: "
         f"1️⃣ Why it received this high score. "
-        f"2️⃣ What can be improved for a better score."
+        f"2️⃣ What can be improved for a better score. "
+        f"Keep it brief and to the point."
     )
 
     try:
