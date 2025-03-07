@@ -48,7 +48,7 @@ def generate_success_score(idea_score, idea_description, stage, lives_impacted, 
         f"Give **2 short bullet points**: "
         f"1️⃣ Why it got this score. "
         f"2️⃣ How to improve it. "
-        f"Keep each point under **20 words**."
+        f"Keep each point under **30 words**."
     )
 
     try:
