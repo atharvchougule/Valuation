@@ -43,9 +43,9 @@ client = Groq(api_key=API_KEY)
 # Function to explain the score
 def generate_success_score(idea_score, idea_description, stage, lives_impacted, funds_raised):
     prompt = (
-        f"My Predicted Idea Score is {idea_score} for the idea: '{idea_description}' "
-        f"in the stage '{stage}', which has impacted {lives_impacted} lives and raised ${funds_raised}.\n"
-        f"Explain why my model might have given {idea_score} based on these factors."
+        f"Predicted Idea Score: {idea_score}/10 for '{idea_description}' at '{stage}' stage. "
+        f"Key reasons: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
+        f"Summarize why this score was given in 2-3 short bullet points."
     )
 
     try:
