@@ -54,7 +54,7 @@ def generate_success_score(idea_score, idea_description, stage, lives_impacted, 
     try:
         chat_completion = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
-            model="mixtral-8x7b-32768",
+            model="mistral-saba-24b llama-3.3-70b-versatile",
             temperature=0.5,
             max_tokens=100
         )
