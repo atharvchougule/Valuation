@@ -37,7 +37,7 @@ def evaluate_new_idea(idea, stage, lives_impacted, funds_raised):
     return round(predicted_score[0], 2)
 
 # Load Groq API Key
-API_KEY = "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"
+API_KEY = "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"
 client = Groq(api_key=API_KEY)
 
 # Function to explain the score
