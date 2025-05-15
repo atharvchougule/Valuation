@@ -42,14 +42,17 @@ client = Groq(api_key=API_KEY)
 
 # Function to explain the score
 def generate_success_score(idea_score, idea_description, stage, lives_impacted, funds_raised):
-    prompt = (
-        f"Predicted Idea Score: {idea_score}/10 for '{idea_description}' at '{stage}' stage. "
-        f"Key factors: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
-        f"Give **2 short bullet points**: "
-        f"1️⃣ Why it got this score. "
-        f"2️⃣ How to improve it. "
-        f"Keep each point under **30 words**."
-    )
+   prompt = (
+    f"Predicted Idea Score: {idea_score}/10 for '{idea_description}' at '{stage}' stage. "
+    f"Key factors: Lives impacted ({lives_impacted}), Funds raised (${funds_raised}). "
+    f"Give **2 short bullet points**:\n"
+    f"1️⃣ Why it got this score.\n"
+    f"2️⃣ How to improve it.\n"
+    f"Keep each point under **30 words**.\n\n"
+    f"If the idea description is gibberish, unclear, or lacks meaningful context, respond with: "
+    f"'⚠️ Please enter valid and meaningful idea information.'"
+)
+
 
     try:
         chat_completion = client.chat.completions.create(
